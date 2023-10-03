@@ -1,0 +1,165 @@
+/* Estilize o corpo do jogo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #E1F5FE; /* Cor de fundo do corpo (um tom de azul claro) */
+
+}
+
+.cabecalho {
+    width: 100%;
+    height: 60px; /* Aumentei a altura para dar mais destaque */
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #1976D2;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* Estilize o título */
+.titulo {
+    color: white; /* Cor do texto branco para maior contraste */
+    font-size: 28px; /* Aumentei o tamanho da fonte */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra no texto para destacá-lo */
+}
+/* Estilize o botão "Como Jogar" */
+.botao-como-jogar {
+    background-color: #1976D2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 20px; /* Espaço à direita para separá-lo do título */
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Efeito de transição de cor de fundo */
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}
+
+/* Estilize o botão "Como Jogar" quando o cursor estiver sobre ele */
+.botao-como-jogar:hover {
+    background-color: #1565C0; /* Cor mais escura quando o cursor estiver sobre o botão */
+}
+
+.tela-regras {
+    display: none; /* Inicialmente oculta */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro com transparência */
+    z-index: 999; /* Z-index alto para ficar acima do conteúdo principal */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilize o conteúdo das regras */
+.conteudo-regras {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* Estilize o botão "Fechar" */
+.conteudo-regras button {
+    background-color: #1976D2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Estilo para o quadro */
+.quadro {
+    display: flex;
+    flex-direction: row; /* Alinhe os quadrados grandes horizontalmente */
+    width: 500px;
+    height: 500px;
+    flex-wrap: wrap;
+    background-color: #3f51b5; /* Cor de fundo do quadro (azul) */
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra suave */
+}
+
+/* Estilo para os quadrados grandes */
+.quadradoGrande {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Alinhe os quadrados grandes horizontalmente */
+    align-items: center; /* Alinhe os quadrados grandes verticalmente */
+    width: calc(100%/3 - 24px); /* Tamanho dos quadrados grandes */
+    height: calc(100%/3 - 24px); /* Tamanho dos quadrados grandes */
+    background-color: #2196F3; /* Cor de fundo dos quadrados grandes (azul claro) */
+    border: 2px solid #1976D2; /* Borda com tom mais escuro de azul */
+    border-radius: 5px; /* Borda arredondada */
+    margin: 10px; /* Espaço entre os quadrados grandes */
+}
+
+/* Estilo para os quadrados pequenos */
+.quadradoPequeno {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center; /* Alinhe os quadrados pequenos horizontalmente */
+    width: calc(100% / 3 - 4px); /* Tamanho dos quadrados pequenos */
+    height: calc(100% / 3 - 4px); /* Tamanho dos quadrados pequenos */
+    background-color: #64B5F6; /* Cor de fundo dos quadrados pequenos (azul claro) */
+    border: 1px solid #1976D2; /* Borda com tom mais escuro de azul */
+    font-size: 24px; /* Tamanho da fonte */
+    border-radius: 5px; /* Borda arredondada */
+}
+
+.vencedorX {
+    background-color: #FF5733; /* Cor de fundo para 'X' */
+    color: #FFFFFF; /* Cor do texto para 'X' */
+    font-weight: bold; /* Texto em negrito para 'X' */
+}
+
+.vencedorO {
+    background-color: #33FF33; /* Cor de fundo para 'O' */
+    color: #FFFFFF; /* Cor do texto para 'O' */
+    font-weight: bold; /* Texto em negrito para 'O' */
+}
+.quadradoValido {
+    background-color: #4CAF50;
+    cursor: pointer;
+}
+
+/* Estilo para quando o quadrado pequeno é clicado */
+.quadradoPequeno:active {
+    background-color: #BBDEFB; /* Cor de fundo quando clicado (azul mais claro) */
+}
+
+.quadradoPequeno1, .quadradoPequeno2, .quadradoPequeno3, .quadradoGrande10,.quadradoPequeno11, .quadradoPequeno12, .quadradoPequeno13, .quadradoGrande20,.quadradoPequeno21, .quadradoPequeno22, .quadradoPequeno23, .quadradoGrande30, .quadradoPequeno31, .quadradoPequeno32, .quadradoPequeno33, .quadradoPequeno41, .quadradoPequeno42, .quadradoPequeno43, .quadradoPequeno51, .quadradoPequeno52, .quadradoPequeno53, .quadradoPequeno61, .quadradoPequeno62, .quadradoPequeno63, .quadradoPequeno71, .quadradoPequeno72, .quadradoPequeno73, .quadradoPequeno81, .quadradoPequeno82, .quadradoPequeno83{
+    border-top: none;
+}
+
+.quadradoGrande10, .quadradoGrande40, .quadradoGrande70, .quadradoPequeno1, .quadradoPequeno4, .quadradoPequeno7, .quadradoPequeno11, .quadradoPequeno14, .quadradoPequeno17, .quadradoPequeno21, .quadradoPequeno24, .quadradoPequeno27, .quadradoPequeno31, .quadradoPequeno34, .quadradoPequeno37, .quadradoPequeno41, .quadradoPequeno44, .quadradoPequeno47, .quadradoPequeno51, .quadradoPequeno54, .quadradoPequeno57, .quadradoPequeno61, .quadradoPequeno64, .quadradoPequeno67, .quadradoPequeno71, .quadradoPequeno74, .quadradoPequeno77, .quadradoPequeno81, .quadradoPequeno84, .quadradoPequeno87{
+    border-left: none;
+}
+
+.quadradoGrande30, .quadradoGrande60, .quadradoGrande90, .quadradoPequeno3, .quadradoPequeno6, .quadradoPequeno9, .quadradoPequeno13, .quadradoPequeno16, .quadradoPequeno19, .quadradoPequeno23, .quadradoPequeno26, .quadradoPequeno29, .quadradoPequeno33, .quadradoPequeno36, .quadradoPequeno39, .quadradoPequeno43, .quadradoPequeno46, .quadradoPequeno49, .quadradoPequeno53, .quadradoPequeno56, .quadradoPequeno59, .quadradoPequeno63, .quadradoPequeno66, .quadradoPequeno69, .quadradoPequeno73, .quadradoPequeno76, .quadradoPequeno79, .quadradoPequeno83, .quadradoPequeno86, .quadradoPequeno89{
+    border-right: none;
+}
+
+.quadradoGrande70, .quadradoGrande80, .quadradoGrande90, .quadradoPequeno7, .quadradoPequeno8, .quadradoPequeno9, .quadradoPequeno17, .quadradoPequeno18, .quadradoPequeno19, .quadradoPequeno27, .quadradoPequeno28, .quadradoPequeno29, .quadradoPequeno37, .quadradoPequeno38, .quadradoPequeno39, .quadradoPequeno47, .quadradoPequeno48, .quadradoPequeno49, .quadradoPequeno57, .quadradoPequeno58, .quadradoPequeno59, .quadradoPequeno67, .quadradoPequeno68, .quadradoPequeno69, .quadradoPequeno77, .quadradoPequeno78, .quadradoPequeno79, .quadradoPequeno87, .quadradoPequeno88, .quadradoPequeno89{
+    border-bottom: none;
+}

@@ -1,0 +1,50 @@
+- saber qual jogador está na vez de jogar
+- marcar com 'X' ou 'O' no quadrado cujo jogador escolher
+- verificar qual número que termina de 1 à 9 o quadrado que o jogador escolheu
+- trocar para o outro jogador
+- o próximo jogador, só podera jogar nos quadradinhos dentro do quadrado grande que corresponde ao último número da jogada anterior
+1-9 = 10
+11-19 = 20
+21-29 = 30
+31-39 = 40 
+41-49 = 50 
+51-59 = 60 
+61-69 = 70 
+71-79 = 80 
+81-89 = 90 
+caso o quadrado grande esteja completo, jogador é livre para escolher onde jogar.
+verificar se algum jogador completou uma sequencia pequena
+sequencia pequenos: terminados em [1,2,3],[1,5,9],[1,4,7],[2,5,8],[3,5,7],[3,6,9],[4,5,6]
+
+se tiver uma sequencia, o jogador que a fez completa aquele quadrado grande, e ele é marcado com 'X' ou 'O'
+verificar se algum jogador completou uma sequencia grande
+sequencia grandes: [10,20,30],[10,50,90],[10,40,70],[20,50,80],[30,50,70],[30,60,90],[40,50,60]
+
+
+Inicialização:
+
+Você precisará de uma variável para rastrear qual jogador está na vez. Por exemplo, let jogadorAtual = 'X'; para começar com o jogador 'X'.
+Captura de Clique:
+
+Você deve adicionar manipuladores de clique para seus quadrados pequenos. Quando um quadrado pequeno for clicado, você pode verificar se ele está disponível para jogada e se pertence ao quadrado grande correto.
+Marcação no Quadrado Pequeno:
+
+Quando um jogador clica em um quadrado pequeno válido, você deve marcar o quadrado com 'X' ou 'O', dependendo do jogador atual.
+Verificação de Quadrado Grande Completo:
+
+Após cada jogada, verifique se o quadrado grande correspondente à última jogada foi completado por um jogador. Você pode fazer isso verificando todas as possíveis combinações vencedoras.
+Troca de Jogador:
+
+Depois de marcar um quadrado pequeno, alterne para o próximo jogador. Por exemplo, se o jogador atual for 'X', alterne para 'O', e vice-versa.
+Regras Especiais:
+
+Implemente as regras especiais em que um jogador é obrigado a jogar em um determinado quadrado grande se o quadrado em que deseja jogar estiver completo.
+Verificação de Sequências Pequenas:
+
+Após cada jogada, verifique se algum jogador completou uma sequência em um quadrado pequeno. Para fazer isso, você pode verificar se as posições dos 'X' ou 'O' correspondem a uma das sequências pequenas.
+Verificação de Sequências Grandes:
+
+Da mesma forma, após cada jogada, verifique se algum jogador completou uma sequência em um quadrado grande. Para fazer isso, você pode verificar se as posições dos 'X' ou 'O' correspondem a uma das sequências grandes.
+Fim do Jogo:
+
+Se um jogador completar uma sequência grande e ganhar o jogo inteiro, ou se não houver mais quadrados disponíveis para jogar, você pode declarar o fim do jogo e exibir uma mensagem de vitória ou empate.

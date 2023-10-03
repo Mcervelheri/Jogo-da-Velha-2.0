@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Jogo da velha 2</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="cabecalho">
+            <button class="jogar" onclick="comecarJogo()">Jogar</button>
+            <h1 class="titulo">JOGO DA VELHA 2.0</h1>
+            <button class="botao-como-jogar" onclick="abrirRegras()">Como Jogar</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="quadro">
+
+            <div id="10" class="quadradoGrande quadradoGrande10">
+                <div id="1" class='quadradoPequeno  quadradoPequeno1'></div>
+    
+                <div id="2" class='quadradoPequeno  quadradoPequeno2'></div>
+    
+                <div id="3" class='quadradoPequeno  quadradoPequeno3'></div>
+    
+                <div id="4" class='quadradoPequeno  quadradoPequeno4'></div>
+    
+                <div id="5" class='quadradoPequeno  quadradoPequeno5'></div>
+    
+                <div id="6" class='quadradoPequeno  quadradoPequeno6'></div>
+    
+                <div id="7" class='quadradoPequeno  quadradoPequeno7'></div>
+    
+                <div id="8" class='quadradoPequeno  quadradoPequeno8'></div>
+    
+                <div id="9" class='quadradoPequeno  quadradoPequeno9'></div>
+            </div>
+            <div id="20" class="quadradoGrande quadradoGrande20">
+    
+                <div id="11" class='quadradoPequeno  quadradoPequeno11'></div>
+    
+                <div id="12" class='quadradoPequeno  quadradoPequeno12'></div>
+    
+                <div id="13" class='quadradoPequeno  quadradoPequeno13'></div>
+    
+                <div id="14" class='quadradoPequeno  quadradoPequeno14'></div>
+    
+                <div id="15" class='quadradoPequeno  quadradoPequeno15'></div>
+    
+                <div id="16" class='quadradoPequeno  quadradoPequeno16'></div>
+    
+                <div id="17" class='quadradoPequeno  quadradoPequeno17'></div>
+    
+                <div id="18" class='quadradoPequeno  quadradoPequeno18'></div>
+    
+                <div id="19" class='quadradoPequeno  quadradoPequeno19'></div>
+            </div>
+            <div id="30" class="quadradoGrande quadradoGrande30">
+                <div id="21" class='quadradoPequeno  quadradoPequeno21'></div>
+    
+                <div id="22" class='quadradoPequeno  quadradoPequeno22'></div>
+    
+                <div id="23" class='quadradoPequeno  quadradoPequeno23'></div>
+    
+                <div id="24" class='quadradoPequeno  quadradoPequeno24'></div>
+    
+                <div id="25" class='quadradoPequeno  quadradoPequeno25'></div>
+    
+                <div id="26" class='quadradoPequeno  quadradoPequeno26'></div>
+    
+                <div id="27" class='quadradoPequeno  quadradoPequeno27'></div>
+    
+                <div id="28" class='quadradoPequeno  quadradoPequeno28'></div>
+    
+                <div id="29" class='quadradoPequeno  quadradoPequeno29'></div>
+            </div>
+            <div id="40" class="quadradoGrande quadradoGrande40">
+                <div id="31" class='quadradoPequeno  quadradoPequeno31'></div>
+    
+                <div id="32" class='quadradoPequeno  quadradoPequeno32'></div>
+    
+                <div id="33" class='quadradoPequeno  quadradoPequeno33'></div>
+    
+                <div id="34" class='quadradoPequeno  quadradoPequeno34'></div>
+    
+                <div id="35" class='quadradoPequeno  quadradoPequeno35'></div>
+    
+                <div id="36" class='quadradoPequeno  quadradoPequeno36'></div>
+    
+                <div id="37" class='quadradoPequeno  quadradoPequeno37'></div>
+    
+                <div id="38" class='quadradoPequeno  quadradoPequeno38'></div>
+    
+                <div id="39" class='quadradoPequeno  quadradoPequeno39'></div>
+            </div>
+            <div id="50" class="quadradoGrande quadradoGrande50">
+                <div id="41" class='quadradoPequeno  quadradoPequeno41'></div>
+    
+                <div id="42" class='quadradoPequeno  quadradoPequeno42'></div>
+    
+                <div id="43" class='quadradoPequeno  quadradoPequeno43'></div>
+    
+                <div id="44" class='quadradoPequeno  quadradoPequeno44'></div>
+    
+                <div id="45" class='quadradoPequeno  quadradoPequeno45'></div>
+    
+                <div id="46" class='quadradoPequeno  quadradoPequeno46'></div>
+    
+                <div id="47" class='quadradoPequeno  quadradoPequeno47'></div>
+    
+                <div id="48" class='quadradoPequeno  quadradoPequeno48'></div>
+    
+                <div id="49" class='quadradoPequeno  quadradoPequeno49'></div>
+            </div>
+            <div id="60" class="quadradoGrande quadradoGrande60">
+                <div id="51" class='quadradoPequeno  quadradoPequeno51'></div>
+    
+                <div id="52" class='quadradoPequeno  quadradoPequeno52'></div>
+    
+                <div id="53" class='quadradoPequeno  quadradoPequeno53'></div>
+    
+                <div id="54" class='quadradoPequeno  quadradoPequeno54'></div>
+    
+                <div id="55" class='quadradoPequeno  quadradoPequeno55'></div>
+    
+                <div id="56" class='quadradoPequeno  quadradoPequeno56'></div>
+    
+                <div id="57" class='quadradoPequeno  quadradoPequeno57'></div>
+    
+                <div id="58" class='quadradoPequeno  quadradoPequeno58'></div>
+    
+                <div id="59" class='quadradoPequeno  quadradoPequeno59'></div>
+            </div>
+            <div id="70" class="quadradoGrande quadradoGrande70">
+                <div id="61" class='quadradoPequeno  quadradoPequeno61'></div>
+    
+                <div id="62" class='quadradoPequeno  quadradoPequeno62'></div>
+    
+                <div id="63" class='quadradoPequeno  quadradoPequeno63'></div>
+    
+                <div id="64" class='quadradoPequeno  quadradoPequeno64'></div>
+    
+                <div id="65" class='quadradoPequeno  quadradoPequeno65'></div>
+    
+                <div id="66" class='quadradoPequeno  quadradoPequeno66'></div>
+    
+                <div id="67" class='quadradoPequeno  quadradoPequeno67'></div>
+    
+                <div id="68" class='quadradoPequeno  quadradoPequeno68'></div>
+    
+                <div id="69" class='quadradoPequeno  quadradoPequeno69'></div>
+            </div>
+            <div id="80" class="quadradoGrande quadradoGrande80">
+                <div id="71" class='quadradoPequeno  quadradoPequeno71'></div>
+    
+                <div id="72" class='quadradoPequeno  quadradoPequeno72'></div>
+    
+                <div id="73" class='quadradoPequeno  quadradoPequeno73'></div>
+    
+                <div id="74" class='quadradoPequeno  quadradoPequeno74'></div>
+    
+                <div id="75" class='quadradoPequeno  quadradoPequeno75'></div>
+    
+                <div id="76" class='quadradoPequeno  quadradoPequeno76'></div>
+    
+                <div id="77" class='quadradoPequeno  quadradoPequeno77'></div>
+    
+                <div id="78" class='quadradoPequeno  quadradoPequeno78'></div>
+    
+                <div id="79" class='quadradoPequeno  quadradoPequeno79'></div>
+            </div>
+            <div id="90" class="quadradoGrande quadradoGrande90">
+                <div id="81" class='quadradoPequeno  quadradoPequeno81'></div>
+    
+                <div id="82" class='quadradoPequeno  quadradoPequeno82'></div>
+    
+                <div id="83" class='quadradoPequeno  quadradoPequeno83'></div>
+    
+                <div id="84" class='quadradoPequeno  quadradoPequeno84'></div>
+    
+                <div id="85" class='quadradoPequeno  quadradoPequeno85'></div>
+    
+                <div id="86" class='quadradoPequeno  quadradoPequeno86'></div>
+    
+                <div id="87" class='quadradoPequeno  quadradoPequeno87'></div>
+    
+                <div id="88" class='quadradoPequeno  quadradoPequeno88'></div>
+    
+                <div id="89" class='quadradoPequeno  quadradoPequeno89'></div>
+            </div>
+        </div>
+        <div id="tela-regras" class="tela-regras">
+            <div class="conteudo-regras">
+                <h2>Regras do Jogo</h2>
+                <p>Aqui estão as regras do nosso super jogo da velha...</p>
+                <!-- Adicione as regras do jogo aqui -->
+                <button onclick="fecharRegras()">Fechar</button>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="js/index.js"></script>
+
+</html>

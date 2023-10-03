@@ -1,0 +1,10 @@
+function verificarSequenciaPequeno(simbolo, jogoPequeno) {
+    const sequenciasVitoria = sequenciaQuadradoPequeno.filter(seq => seq.every(posicao => {
+        const idDiv = posicao.toString();
+        const conteudoDiv = document.getElementById(idDiv).textContent;
+        return conteudoDiv === simbolo;
+    }));
+
+    // Verifica se alguma das sequências de vitória pertence ao jogo menor atual
+    return sequenciasVitoria.some(seq => seq.every(posicao => jogoPequeno.includes(posicao)));
+}
