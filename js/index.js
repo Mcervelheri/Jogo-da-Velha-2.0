@@ -137,21 +137,10 @@ function escolherQuadrado(id) {
 
     // Se houver uma vitória, adiciona todos os quadrados da sequência à lista de quadrados marcados
     if (vitoriaX || vitoriaO) {
-        const sequenciaVitoriosa = sequenciaQuadradoPequeno.find(seq => seq.every(posicao => {
-            const idDiv = posicao;
+        const quadradosFilhos = quadradoGrande.children;
+        const idQuadradosFilhos = Array.from(quadradosFilhos).map(elemento => elemento.id);
 
-            return quadradosMarcados.includes(idDiv);
-        }));
-
-        if (sequenciaVitoriosa) {
-            quadradosMarcados.push(...sequenciaVitoriosa);
-        }
-        console.log(quadradosMarcados);
-        // Desabilita o clique em todas as divs filhas do quadradoGrande
-        const divsFilhas = quadradoGrande.querySelectorAll('.quadradoPequeno');
-        divsFilhas.forEach(divFilha => {
-            divFilha.onclick = null;
-        });
+        quadradosMarcados.push(...idQuadradosFilhos);
 
         // Aplica os estilos de vencedor
         if (vitoriaX) {
@@ -169,51 +158,45 @@ function escolherQuadrado(id) {
     let quadradosValidos = [];
     listaQuadradosGrande = removerNumeroDaLista(id);
 
-    switch (proximoQuadrado) {
-        case '10':
-            quadradosValidos = listaQuadradosGrande[0];
-            desabilitarQuadrados(quadradosValidos)
-            break;
+    quadradosValidos = obterQuadradosValidos(proximoQuadrado);
+    desabilitarQuadrados(quadradosValidos);
 
-        case '20':
-            quadradosValidos = listaQuadradosGrande[1];
-            desabilitarQuadrados(quadradosValidos)
-            break;
-
-        case '30':
-            quadradosValidos = listaQuadradosGrande[2];
-            desabilitarQuadrados(quadradosValidos)
-            break;
-        case '40':
-            quadradosValidos = listaQuadradosGrande[3];
-            desabilitarQuadrados(quadradosValidos)
-            break;
-        case '50':
-            quadradosValidos = listaQuadradosGrande[4];
-            desabilitarQuadrados(quadradosValidos)
-            break;
-        case '60':
-            quadradosValidos = listaQuadradosGrande[5];
-            desabilitarQuadrados(quadradosValidos)
-            break;
-        case '70':
-            quadradosValidos = listaQuadradosGrande[6];
-            desabilitarQuadrados(quadradosValidos)
-            break;
-        case '80':
-            quadradosValidos = listaQuadradosGrande[7];
-            desabilitarQuadrados(quadradosValidos)
-            break;
-        case '90':
-            quadradosValidos = listaQuadradosGrande[8];
-            desabilitarQuadrados(quadradosValidos)
-            break;
-
-        default:
-            break;
-    }
 }
-function verificarSequenciaPequeno(simbolo, quadradoGrande) {
+
+function obterQuadradosValidos(proximoQuadrado) {
+    let quadradosValidos = listaQuadradosGrande[parseInt(proximoQuadrado[0]) - 1]; // Obtém os quadrados válidos com base no próximo quadrado
+    // Verifica se o quadradão foi vencido
+    const quadradaoVencido = verificarSequenciaPequeno(jogadorAtual, proximoQuadrado);
+    // Se o quadradão foi vencido, remova todos os quadrados dentro dele da lista de quadrados válidos
+
+    if (quadradaoVencido) {
+        removerQuadradosDoQuadradao(quadradaoVencido);
+    }
+
+    // Remove os quadrados já marcados
+    quadradosValidos = quadradosValidos.filter(quadrado => !quadradosMarcados.includes(quadrado));
+
+    // Se não houver quadrados válidos após a remoção dos já marcados, permite a próxima jogada em qualquer lugar, exceto nos quadrados já marcados
+    if (quadradosValidos.length === 0) {
+        quadradosValidos = listaQuadradosGrande.flat().filter(quadrado => !quadradosMarcados.includes(quadrado));
+    }
+
+    return quadradosValidos;
+}
+
+function removerQuadradosDoQuadradao(quadradaoId) {
+    const quadradao = document.getElementById(quadradaoId);
+    const quadradosDoQuadradao = quadradao.querySelectorAll('.quadradoPequeno');
+
+    quadradosDoQuadradao.forEach(quadrado => {
+        const quadradoId = quadrado.id;
+        if (!quadradosMarcados.includes(quadradoId)) {
+            quadradosMarcados.push(quadradoId);
+        }
+    });
+}
+
+function verificarSequenciaPequeno(simbolo, idQuadradoGrande) {
     const sequenciasVitoria = sequenciaQuadradoPequeno.filter(seq => seq.every(posicao => {
         const idDiv = posicao.toString();
         const conteudoDiv = document.getElementById(idDiv).textContent;
@@ -222,34 +205,24 @@ function verificarSequenciaPequeno(simbolo, quadradoGrande) {
 
     // Inicialize um array para armazenar os IDs dos elementos filhos
     const idsElementosFilhos = [];
-
+    const filhos = idQuadradoGrande.childNodes;
     // Itere sobre os elementos filhos para coletar seus IDs
-    for (let i = 0; i < quadradoGrande.children.length; i++) {
-        const elementoFilho = quadradoGrande.children[i];
-        idsElementosFilhos.push(elementoFilho.id);
+    for (let i = 0; i < filhos.length; i++) {
+        const elementoFilho = filhos[i];
+        if (elementoFilho.nodeType === 1) { // Verifique se é um elemento HTML (nodeType 1)
+            idsElementosFilhos.push(elementoFilho.id);
+        }
     }
+    console.log(idsElementosFilhos);
 
+    const sequenciaVitoriosa = sequenciasVitoria.find(seq => seq.every(posicao => idsElementosFilhos.includes(posicao.toString())));
     // Verifica se alguma das sequências de vitória pertence ao jogo menor atual
-    return sequenciasVitoria.some(seq => seq.every(posicao => idsElementosFilhos.includes(posicao.toString())));
+    if (sequenciaVitoriosa) {
+        return sequenciaVitoriosa;
+    }
+    return null;
 }
 
-
-// function verificarSequenciaPequeno(simbolo) {
-
-//     for (let i = 0; i < sequenciaQuadradoPequeno.length; i++) {
-//         const element = sequenciaQuadradoPequeno[i];
-
-//         const todasMarcadas = element.every((posicao) => {
-//             const idDiv = posicao.toString();
-//             const conteudoDiv = document.getElementById(idDiv).textContent;
-//             return conteudoDiv === simbolo;
-//         });
-//         if (todasMarcadas) {
-//             return true;
-//         }
-//     }
-//     return false;
-// }
 
 function desabilitarQuadrados(quadradosValidos) {
     const todosQuadrados = document.querySelectorAll('.quadradoPequeno');
