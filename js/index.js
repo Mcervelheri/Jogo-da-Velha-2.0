@@ -89,6 +89,59 @@ let listaQuadradosGrande = [
     [81, 82, 83, 84, 85, 86, 87, 88, 89]
 ];
 
+function comecarJogo() {
+    todosQuadrados = document.querySelectorAll('.quadradoPequeno');
+    todosQuadrados.forEach(quadrado => {
+        quadrado.classList.add('quadradoValido');
+        quadrado.onclick = () => escolherQuadrado(quadrado.id);
+    })
+}
+
+// Função para abrir a tela de regras
+function abrirRegras() {
+    document.getElementById("tela-regras").style.display = "flex";
+}
+
+// Função para fechar a tela de regras
+function fecharRegras() {
+    document.getElementById("tela-regras").style.display = "none";
+}
+
+function escolherQuadrado(id) {
+    const quadradoGrande = document.getElementById(id).parentNode;
+    quadradoJogado = document.getElementById(id);
+    quadradoJogado.innerHTML = jogadorAtual;
+
+    // Adiciona o quadrado atual à lista de quadrados marcados
+    quadradosMarcados.push(id);
+    let vitoriaX = verificarSequenciaPequeno('X', quadradoGrande);
+    let vitoriaO = verificarSequenciaPequeno('O', quadradoGrande);
+    let quadradaoVencido = 0
+    // Se houver uma vitória, adiciona todos os quadrados da sequência à lista de quadrados marcados
+    if (vitoriaX || vitoriaO) {
+        const quadradosFilhos = quadradoGrande.children;
+        const idQuadradosFilhos = Array.from(quadradosFilhos).map(elemento => elemento.id);
+        quadradosMarcados.push(...idQuadradosFilhos);
+        quadradaoVencido = quadradoGrande.id;
+        // Aplica os estilos de vencedor
+        if (vitoriaX) {
+            quadradoGrande.classList.add('vencedorX');
+        }
+        if (vitoriaO) {
+            quadradoGrande.classList.add('vencedorO');
+        }
+    }
+    const ultimoDigito = id.slice(-1);
+    const proximoQuadrado = ultimoDigito + '0';
+    
+    trocarJogador(jogadorAtual);
+    
+    let quadradosValidos = obterQuadradosValidos(proximoQuadrado, quadradaoVencido);
+    listaQuadradosGrande = removerNumeroDaLista(id);
+
+    desabilitarQuadrados(quadradosValidos);
+}
+
 function removerNumeroDaLista(numeroRemover) {
     numeroRemover = parseInt(numeroRemover);
     for (let i = 0; i < listaQuadradosGrande.length; i++) {
@@ -102,92 +155,34 @@ function removerNumeroDaLista(numeroRemover) {
     return listaQuadradosGrande;
 }
 
-// Função para abrir a tela de regras
-function abrirRegras() {
-    document.getElementById("tela-regras").style.display = "flex";
-}
-
-// Função para fechar a tela de regras
-function fecharRegras() {
-    document.getElementById("tela-regras").style.display = "none";
-}
-
-function comecarJogo() {
-    todosQuadrados = document.querySelectorAll('.quadradoPequeno');
-    todosQuadrados.forEach(quadrado => {
-        quadrado.classList.add('quadradoValido');
-        quadrado.onclick = () => escolherQuadrado(quadrado.id);
-    })
-}
-
 function obterQuadradosFilhos(quadradoGrande) {
     return quadradoGrande.querySelectorAll('.quadradoPequeno');
 }
 
-function escolherQuadrado(id) {
-    const quadradoGrande = document.getElementById(id).parentNode;
-    quadradoJogado = document.getElementById(id);
-    quadradoJogado.innerHTML = jogadorAtual;
-
-    // Adiciona o quadrado atual à lista de quadrados marcados
-    quadradosMarcados.push(id);
-
-    let vitoriaX = verificarSequenciaPequeno('X', quadradoGrande);
-    let vitoriaO = verificarSequenciaPequeno('O', quadradoGrande);
-
-    // Se houver uma vitória, adiciona todos os quadrados da sequência à lista de quadrados marcados
-    if (vitoriaX || vitoriaO) {
-        const quadradosFilhos = quadradoGrande.children;
-        const idQuadradosFilhos = Array.from(quadradosFilhos).map(elemento => elemento.id);
-
-        quadradosMarcados.push(...idQuadradosFilhos);
-
-        // Aplica os estilos de vencedor
-        if (vitoriaX) {
-            quadradoGrande.classList.add('vencedorX');
-        }
-        if (vitoriaO) {
-            quadradoGrande.classList.add('vencedorO');
-        }
-    }
-    const ultimoDigito = id.slice(-1);
-    const proximoQuadrado = ultimoDigito + '0';
-
-    trocarJogador(jogadorAtual);
-
-    let quadradosValidos = [];
-    listaQuadradosGrande = removerNumeroDaLista(id);
-
-    quadradosValidos = obterQuadradosValidos(proximoQuadrado);
-    desabilitarQuadrados(quadradosValidos);
-
-}
-
-function obterQuadradosValidos(proximoQuadrado) {
+function obterQuadradosValidos(proximoQuadrado, quadradoGrande) {
     let quadradosValidos = listaQuadradosGrande[parseInt(proximoQuadrado[0]) - 1]; // Obtém os quadrados válidos com base no próximo quadrado
-    // Verifica se o quadradão foi vencido
-    const quadradaoVencido = verificarSequenciaPequeno(jogadorAtual, proximoQuadrado);
-    // Se o quadradão foi vencido, remova todos os quadrados dentro dele da lista de quadrados válidos
-
-    if (quadradaoVencido) {
-        removerQuadradosDoQuadradao(quadradaoVencido);
-    }
-
-    // Remove os quadrados já marcados
     quadradosValidos = quadradosValidos.filter(quadrado => !quadradosMarcados.includes(quadrado));
+    
+    const numerosQuadradosMarcados = quadradosMarcados.map(numero => Number(numero));
 
     // Se não houver quadrados válidos após a remoção dos já marcados, permite a próxima jogada em qualquer lugar, exceto nos quadrados já marcados
-    if (quadradosValidos.length === 0) {
-        quadradosValidos = listaQuadradosGrande.flat().filter(quadrado => !quadradosMarcados.includes(quadrado));
+    
+    for (let i = 0; i < numerosQuadradosMarcados.length; i++) {
+        const index = quadradosValidos.indexOf(numerosQuadradosMarcados[i]);
+        if (index !== -1) {
+            quadradosValidos.splice(index, 1);
+        }
     }
-
+    
+    if (quadradosValidos.length === 0) {
+        quadradosValidos = listaQuadradosGrande.flat().filter(quadrado => !numerosQuadradosMarcados.includes(quadrado));
+    }
     return quadradosValidos;
 }
 
 function removerQuadradosDoQuadradao(quadradaoId) {
     const quadradao = document.getElementById(quadradaoId);
     const quadradosDoQuadradao = quadradao.querySelectorAll('.quadradoPequeno');
-
     quadradosDoQuadradao.forEach(quadrado => {
         const quadradoId = quadrado.id;
         if (!quadradosMarcados.includes(quadradoId)) {
@@ -202,25 +197,23 @@ function verificarSequenciaPequeno(simbolo, idQuadradoGrande) {
         const conteudoDiv = document.getElementById(idDiv).textContent;
         return conteudoDiv === simbolo;
     }));
-
-    // Inicialize um array para armazenar os IDs dos elementos filhos
     const idsElementosFilhos = [];
-    const filhos = idQuadradoGrande.childNodes;
-    // Itere sobre os elementos filhos para coletar seus IDs
-    for (let i = 0; i < filhos.length; i++) {
-        const elementoFilho = filhos[i];
-        if (elementoFilho.nodeType === 1) { // Verifique se é um elemento HTML (nodeType 1)
-            idsElementosFilhos.push(elementoFilho.id);
+    if (typeof idQuadradoGrande === 'string') {
+        return sequenciasVitoria.length >= 1 ? idQuadradoGrande : null;
+    } else {
+        const filhos = idQuadradoGrande.children;
+        // É um objeto, portanto, é um elemento DOM, colete os IDs dos elementos filhos
+        for (let i = 0; i < filhos.length; i++) {
+            const elementoFilho = filhos[i];
+            if (elementoFilho.nodeType === 1) { // Verifique se é um elemento HTML (nodeType 1)
+                idsElementosFilhos.push(elementoFilho.id);
+            }
         }
-    }
-    console.log(idsElementosFilhos);
 
-    const sequenciaVitoriosa = sequenciasVitoria.find(seq => seq.every(posicao => idsElementosFilhos.includes(posicao.toString())));
-    // Verifica se alguma das sequências de vitória pertence ao jogo menor atual
-    if (sequenciaVitoriosa) {
-        return sequenciaVitoriosa;
+        const sequenciaVitoriosa = sequenciasVitoria.find(seq => seq.every(posicao => idsElementosFilhos.includes(posicao.toString())));
+        // Verifica se houve uma sequência vitoriosa
+        return sequenciaVitoriosa ? true : false;
     }
-    return null;
 }
 
 
