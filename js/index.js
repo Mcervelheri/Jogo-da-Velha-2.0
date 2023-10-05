@@ -114,20 +114,20 @@ function escolherQuadrado(id) {
 
     // Adiciona o quadrado atual à lista de quadrados marcados
     quadradosMarcados.push(id);
-    let vitoriaX = verificarSequenciaPequeno('X', quadradoGrande);
-    let vitoriaO = verificarSequenciaPequeno('O', quadradoGrande);
+    let vitoriaQuadradinhoX = verificarSequenciaPequeno('X', quadradoGrande);
+    let vitoriaQuadradinhoO = verificarSequenciaPequeno('O', quadradoGrande);
     let quadradaoVencido = 0
     // Se houver uma vitória, adiciona todos os quadrados da sequência à lista de quadrados marcados
-    if (vitoriaX || vitoriaO) {
+    if (vitoriaQuadradinhoX || vitoriaQuadradinhoO) {
         const quadradosFilhos = quadradoGrande.children;
         const idQuadradosFilhos = Array.from(quadradosFilhos).map(elemento => elemento.id);
         quadradosMarcados.push(...idQuadradosFilhos);
         quadradaoVencido = quadradoGrande.id;
         // Aplica os estilos de vencedor
-        if (vitoriaX) {
+        if (vitoriaQuadradinhoX) {
             quadradoGrande.classList.add('vencedorX');
         }
-        if (vitoriaO) {
+        if (vitoriaQuadradinhoO) {
             quadradoGrande.classList.add('vencedorO');
         }
     }

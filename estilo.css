@@ -54,6 +54,27 @@ body {
     background-color: #1565C0; /* Cor mais escura quando o cursor estiver sobre o botão */
 }
 
+.jogar {
+    background-color: #1976D2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 20px; /* Espaço à direita para separá-lo do título */
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Efeito de transição de cor de fundo */
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
+}
+
+.jogar:hover{
+    background-color: #1565C0;
+}
+
 .tela-regras {
     display: none; /* Inicialmente oculta */
     position: fixed;
