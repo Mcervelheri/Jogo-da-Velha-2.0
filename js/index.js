@@ -1,6 +1,12 @@
 const quadradosPequenos = document.querySelectorAll(".quadradoPequeno");
+let contadorVitoriasX = 0;
+let contadorVitoriasO = 0;
 let quadradosMarcados = [];
 let jogadorAtual = "X";
+let mostrarJogador = '';
+let quadradosValidos = [];
+let numerosQuadradosMarcados = [];
+
 
 let sequenciaQuadradoPequeno = [
     [1, 2, 3],
@@ -77,7 +83,22 @@ let sequenciaQuadradoPequeno = [
     [87, 88, 89],
 ];
 
-let listaQuadradosGrande = [
+let sequenciaQuadradoGrande = [
+    [10, 20, 30],
+    [10, 50, 90],
+    [10, 40, 70],
+    [20, 50, 80],
+    [30, 50, 70],
+    [30, 60, 90],
+    [40, 50, 60],
+    [70, 80, 90],
+]
+
+function deepCopy(arr) {
+    return arr.map(subArr => [...subArr]);
+}
+
+let listaQuadradosGrandeInalterada = [
     [1, 2, 3, 4, 5, 6, 7, 8, 9],
     [11, 12, 13, 14, 15, 16, 17, 18, 19],
     [21, 22, 23, 24, 25, 26, 27, 28, 29],
@@ -89,25 +110,50 @@ let listaQuadradosGrande = [
     [81, 82, 83, 84, 85, 86, 87, 88, 89]
 ];
 
+let listaQuadradosGrande = deepCopy(listaQuadradosGrandeInalterada);
+
 function comecarJogo() {
+    quadradosMarcados = [];
+    quadradosValidos = [];
+    listaQuadradosGrande = deepCopy(listaQuadradosGrandeInalterada);
     todosQuadrados = document.querySelectorAll('.quadradoPequeno');
     todosQuadrados.forEach(quadrado => {
         quadrado.classList.add('quadradoValido');
+        quadrado.textContent = null;
         quadrado.onclick = () => escolherQuadrado(quadrado.id);
+        quadradosValidos.push(parseInt(quadrado.id)); 
+    });
+
+    todosQuadradosGrandes = document.querySelectorAll('.quadradoGrande');
+    todosQuadradosGrandes.forEach(quadradoGrande => {
+        quadradoGrande.classList.remove('vencedorX');
+        quadradoGrande.classList.remove('vencedorO');
     })
+    mostrarJogador = document.querySelector('.jogadorAtual');
+    mostrarJogador.textContent = 'Jogador atual:' + jogadorAtual;
 }
 
-// Função para abrir a tela de regras
+
 function abrirRegras() {
     document.getElementById("tela-regras").style.display = "flex";
 }
 
-// Função para fechar a tela de regras
 function fecharRegras() {
     document.getElementById("tela-regras").style.display = "none";
 }
 
+function abrirVencedor(jogadorAtual) {
+    document.getElementById("tela-vencedor").style.display = "flex";
+    document.querySelector('.tela-vencedor').querySelector('h2').textContent = 'Vitoria do jogador '+jogadorAtual;
+}
+
+function fecharVencedor() {
+    document.getElementById("tela-vencedor").style.display = "none";
+    comecarJogo();
+}
+
 function escolherQuadrado(id) {
+
     const quadradoGrande = document.getElementById(id).parentNode;
     quadradoJogado = document.getElementById(id);
     quadradoJogado.innerHTML = jogadorAtual;
@@ -125,21 +171,32 @@ function escolherQuadrado(id) {
         quadradaoVencido = quadradoGrande.id;
         // Aplica os estilos de vencedor
         if (vitoriaQuadradinhoX) {
+            quadradosMarcados.push(quadradaoVencido);
             quadradoGrande.classList.add('vencedorX');
+            if (verificarSequenciaGrandeCompleta()) {
+                abrirVencedor(jogadorAtual);
+                contadorVitoriasX += 1;
+            }
         }
         if (vitoriaQuadradinhoO) {
+            quadradosMarcados.push(quadradaoVencido);
             quadradoGrande.classList.add('vencedorO');
+            if (verificarSequenciaGrandeCompleta()) {
+                abrirVencedor(jogadorAtual);
+                contadorVitoriasO += 1;
+            }
         }
     }
     const ultimoDigito = id.slice(-1);
     const proximoQuadrado = ultimoDigito + '0';
-    
+
     trocarJogador(jogadorAtual);
-    
-    let quadradosValidos = obterQuadradosValidos(proximoQuadrado, quadradaoVencido);
+
+    quadradosValidos = obterQuadradosValidos(proximoQuadrado);
     listaQuadradosGrande = removerNumeroDaLista(id);
 
     desabilitarQuadrados(quadradosValidos);
+
 }
 
 function removerNumeroDaLista(numeroRemover) {
@@ -159,21 +216,18 @@ function obterQuadradosFilhos(quadradoGrande) {
     return quadradoGrande.querySelectorAll('.quadradoPequeno');
 }
 
-function obterQuadradosValidos(proximoQuadrado, quadradoGrande) {
-    let quadradosValidos = listaQuadradosGrande[parseInt(proximoQuadrado[0]) - 1]; // Obtém os quadrados válidos com base no próximo quadrado
+function obterQuadradosValidos(proximoQuadrado) {
+    quadradosValidos = listaQuadradosGrande[parseInt(proximoQuadrado[0]) - 1]; // Obtém os quadrados válidos com base no próximo quadrado
     quadradosValidos = quadradosValidos.filter(quadrado => !quadradosMarcados.includes(quadrado));
-    
-    const numerosQuadradosMarcados = quadradosMarcados.map(numero => Number(numero));
+    numerosQuadradosMarcados = quadradosMarcados.map(numero => Number(numero));
 
-    // Se não houver quadrados válidos após a remoção dos já marcados, permite a próxima jogada em qualquer lugar, exceto nos quadrados já marcados
-    
     for (let i = 0; i < numerosQuadradosMarcados.length; i++) {
         const index = quadradosValidos.indexOf(numerosQuadradosMarcados[i]);
         if (index !== -1) {
             quadradosValidos.splice(index, 1);
         }
     }
-    
+
     if (quadradosValidos.length === 0) {
         quadradosValidos = listaQuadradosGrande.flat().filter(quadrado => !numerosQuadradosMarcados.includes(quadrado));
     }
@@ -216,14 +270,31 @@ function verificarSequenciaPequeno(simbolo, idQuadradoGrande) {
     }
 }
 
+function verificarSequenciaGrandeCompleta() {
+    // Percorre a matriz de sequência de quadrados grandes
+    for (let i = 0; i < sequenciaQuadradoGrande.length; i++) {
+        const sequencia = sequenciaQuadradoGrande[i];
+
+        // Verifica se todos os quadrados na sequência têm a classe do símbolo do jogador
+        const sequenciaCompleta = sequencia.every(quadradoId => {
+            const quadrado = document.getElementById(quadradoId.toString());
+            return quadrado.classList.contains('vencedorX') || quadrado.classList.contains('vencedorO') 
+        });
+
+        if (sequenciaCompleta) {
+            return true;
+        }
+    }
+
+    return false; // Nenhuma sequência completa encontrada
+}
 
 function desabilitarQuadrados(quadradosValidos) {
-    const todosQuadrados = document.querySelectorAll('.quadradoPequeno');
-    todosQuadrados.forEach(quadrado => {
+    const cadaQuadrado = document.querySelectorAll('.quadradoPequeno');
+    cadaQuadrado.forEach(quadrado => {
         quadrado.classList.remove('quadradoValido');
         quadrado.onclick = null;
     });
-
     quadradosValidos.forEach(quadradoId => {
         const quadrado = document.getElementById(quadradoId);
         quadrado.classList.add('quadradoValido');
@@ -234,7 +305,10 @@ function desabilitarQuadrados(quadradosValidos) {
 function trocarJogador(ultimoAJogar) {
     if (ultimoAJogar === "X") {
         jogadorAtual = "O";
+
+        mostrarJogador.textContent = 'Jogador atual:' + jogadorAtual;
     } else if (ultimoAJogar === "O") {
         jogadorAtual = "X";
+        mostrarJogador.textContent = 'Jogador atual:' + jogadorAtual;
     }
 }

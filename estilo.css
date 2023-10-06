@@ -75,7 +75,7 @@ body {
     background-color: #1565C0;
 }
 
-.tela-regras {
+.tela-regras, .tela-vencedor {
     display: none; /* Inicialmente oculta */
     position: fixed;
     top: 0;
@@ -89,7 +89,7 @@ body {
 }
 
 /* Estilize o conteúdo das regras */
-.conteudo-regras {
+.conteudo-regras, .conteudo-vencedor {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -98,7 +98,7 @@ body {
 }
 
 /* Estilize o botão "Fechar" */
-.conteudo-regras button {
+.conteudo-regras button, .conteudo-vencedor button {
     background-color: #1976D2;
     color: white;
     border: none;

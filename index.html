@@ -15,6 +15,7 @@
     <header>
         <div class="cabecalho">
             <button class="jogar" onclick="comecarJogo()">Jogar</button>
+            <button class="reiniciar" onclick="comecarJogo()">Reiniciar</button>
             <h1 class="titulo">JOGO DA VELHA 2.0</h1>
             <button class="botao-como-jogar" onclick="abrirRegras()">Como Jogar</button>
         </div>
@@ -196,12 +197,23 @@
                 <div id="89" class='quadradoPequeno  quadradoPequeno89'></div>
             </div>
         </div>
+        <div class="containerLateral">
+            <p class="jogadorAtual"></p>
+            <p class="placar"></p>
+        </div>
         <div id="tela-regras" class="tela-regras">
             <div class="conteudo-regras">
                 <h2>Regras do Jogo</h2>
                 <p>Aqui estão as regras do nosso super jogo da velha...</p>
                 <!-- Adicione as regras do jogo aqui -->
                 <button onclick="fecharRegras()">Fechar</button>
+            </div>
+        </div>
+        <div id="tela-vencedor" class="tela-vencedor">
+            <div class="conteudo-vencedor">
+                <h2></h2>
+                <!-- Adicione as regras do jogo aqui -->
+                <button onclick="fecharVencedor()">Reiniciar</button>
             </div>
         </div>
     </main>
