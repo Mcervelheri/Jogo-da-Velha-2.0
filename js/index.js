@@ -4,6 +4,7 @@ let contadorVitoriasO = 0;
 let quadradosMarcados = [];
 let jogadorAtual = "X";
 let mostrarJogador = '';
+let mostrarPlacar = '';
 let quadradosValidos = [];
 let numerosQuadradosMarcados = [];
 
@@ -131,8 +132,9 @@ function comecarJogo() {
     })
     mostrarJogador = document.querySelector('.jogadorAtual');
     mostrarJogador.textContent = 'Jogador atual:' + jogadorAtual;
+    mostrarPlacar = document.querySelector('.placar');
+    mostrarPlacar.textContent = 'Placar\n'+'jogador X: '+contadorVitoriasX+'\nJogador O: '+contadorVitoriasO;
 }
-
 
 function abrirRegras() {
     document.getElementById("tela-regras").style.display = "flex";

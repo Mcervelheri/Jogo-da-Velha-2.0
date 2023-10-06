@@ -164,6 +164,8 @@ body {
     cursor: pointer;
 }
 
+
+
 /* Estilo para quando o quadrado pequeno é clicado */
 .quadradoPequeno:active {
     background-color: #BBDEFB; /* Cor de fundo quando clicado (azul mais claro) */
