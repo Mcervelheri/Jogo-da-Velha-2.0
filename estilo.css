@@ -1,4 +1,3 @@
-/* Estilize o corpo do jogo */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -8,167 +7,237 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #E1F5FE; /* Cor de fundo do corpo (um tom de azul claro) */
-
+    background-color: #E1F5FE;
 }
 
-.cabecalho {
-    width: 100%;
-    height: 60px; /* Aumentei a altura para dar mais destaque */
+main {
     display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #1976D2;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
+    height: 100vh;
+    width: 100vw;
 }
 
-/* Estilize o título */
-.titulo {
-    color: white; /* Cor do texto branco para maior contraste */
-    font-size: 28px; /* Aumentei o tamanho da fonte */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra no texto para destacá-lo */
-}
-/* Estilize o botão "Como Jogar" */
-.botao-como-jogar {
-    background-color: #1976D2;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-right: 20px; /* Espaço à direita para separá-lo do título */
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease; /* Efeito de transição de cor de fundo */
-
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
-}
-
-/* Estilize o botão "Como Jogar" quando o cursor estiver sobre ele */
-.botao-como-jogar:hover {
-    background-color: #1565C0; /* Cor mais escura quando o cursor estiver sobre o botão */
-}
-
-.jogar {
-    background-color: #1976D2;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-right: 20px; /* Espaço à direita para separá-lo do título */
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease; /* Efeito de transição de cor de fundo */
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 10px;
-}
-
-.jogar:hover{
-    background-color: #1565C0;
-}
-
-.tela-regras, .tela-vencedor {
-    display: none; /* Inicialmente oculta */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro com transparência */
-    z-index: 999; /* Z-index alto para ficar acima do conteúdo principal */
-    justify-content: center;
-    align-items: center;
-}
-
-/* Estilize o conteúdo das regras */
-.conteudo-regras, .conteudo-vencedor {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
-
-/* Estilize o botão "Fechar" */
-.conteudo-regras button, .conteudo-vencedor button {
-    background-color: #1976D2;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-/* Estilo para o quadro */
 .quadro {
     display: flex;
-    flex-direction: row; /* Alinhe os quadrados grandes horizontalmente */
-    width: 500px;
-    height: 500px;
-    flex-wrap: wrap;
-    background-color: #3f51b5; /* Cor de fundo do quadro (azul) */
-    border-radius: 10px; /* Borda arredondada */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    background-color: #3f51b5;
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilo para os quadrados grandes */
-.quadradoGrande {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Alinhe os quadrados grandes horizontalmente */
-    align-items: center; /* Alinhe os quadrados grandes verticalmente */
-    width: calc(100%/3 - 24px); /* Tamanho dos quadrados grandes */
-    height: calc(100%/3 - 24px); /* Tamanho dos quadrados grandes */
-    background-color: #2196F3; /* Cor de fundo dos quadrados grandes (azul claro) */
-    border: 2px solid #1976D2; /* Borda com tom mais escuro de azul */
-    border-radius: 5px; /* Borda arredondada */
-    margin: 10px; /* Espaço entre os quadrados grandes */
+@media only screen and (min-width: 992px) {
+    main {
+        flex-direction: row;
+        margin-top: 60px;
+        justify-content: center;
+        height: calc(100vh - 60px);
+        border: 1px solid red;
+    }
+    
+    .quadro {
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-width: 586px;
+        min-height: 586px;
+    }
+
+    .cabecalho {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #1976D2;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 0;
+    }
+    .container-lateral {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 200px;
+        background-color: #ffffffa5;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        margin: 10px;
+    }
+
+    .jogador-atual {
+        font-size: 20px;
+        color: #1976D2;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    
+    .titulo {
+        color: white;
+        font-size: 28px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        position: relative;
+    }
+
+    .placar {
+        font-size: 18px;
+        color: #333;
+        margin: 10px 0;
+    }
+    
+    .botao-como-jogar {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-right: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease; 
+    
+        position: absolute;
+        top: 0;
+        left: 183px;
+        margin: 10px;
+    }
+    
+    .botao-como-jogar:hover {
+        background-color: #1565C0;
+    }
+    
+    .jogar {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-right: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease; 
+    
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 10px;
+    }
+    
+    .jogar:hover{
+        background-color: #1565C0;
+    }
+
+    .reiniciar {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-right: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease; 
+    
+        position: absolute;
+        top: 0;
+        left: 80px;
+        margin: 10px;
+    }
+    
+    .reiniciar:hover{
+        background-color: #1565C0;
+    }
+    
+    .tela-regras, .tela-vencedor {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .conteudo-regras, .conteudo-vencedor {
+        background-color: #ffffffa5;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+    
+    /* Estilize o botão "Fechar" */
+    .conteudo-regras button, .conteudo-vencedor button {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    .quadradoGrande {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: calc(100%/3 - 24px);
+        height: calc(100%/3 - 24px);
+        background-color: #2196F3;
+        border: 2px solid #1976D2;
+        border-radius: 5px;
+        margin: 10px; 
+    }
+    
+    .quadradoPequeno {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center; 
+        width: calc(100% / 3 - 4px); 
+        height: calc(100% / 3 - 4px); 
+        background-color: #64B5F6;
+        border: 1px solid #1976D2; 
+        font-size: 24px; 
+        border-radius: 5px; 
+    }
 }
 
-/* Estilo para os quadrados pequenos */
-.quadradoPequeno {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center; /* Alinhe os quadrados pequenos horizontalmente */
-    width: calc(100% / 3 - 4px); /* Tamanho dos quadrados pequenos */
-    height: calc(100% / 3 - 4px); /* Tamanho dos quadrados pequenos */
-    background-color: #64B5F6; /* Cor de fundo dos quadrados pequenos (azul claro) */
-    border: 1px solid #1976D2; /* Borda com tom mais escuro de azul */
-    font-size: 24px; /* Tamanho da fonte */
-    border-radius: 5px; /* Borda arredondada */
+@media only screen and (min-width: 768px) {
+
 }
+
+@media only screen and (min-width: 600px) {
+
+}
+
+@media only screen and (max-width: 600px) {
+
+}
+
+
 
 .vencedorX {
-    background-color: #FF5733; /* Cor de fundo para 'X' */
-    color: #FFFFFF; /* Cor do texto para 'X' */
-    font-weight: bold; /* Texto em negrito para 'X' */
+    background-color: #FF5733;
+    color: #FFFFFF;
+    font-weight: bold;
 }
 
 .vencedorO {
-    background-color: #33FF33; /* Cor de fundo para 'O' */
-    color: #FFFFFF; /* Cor do texto para 'O' */
-    font-weight: bold; /* Texto em negrito para 'O' */
+    background-color: #33FF33;
+    color: #FFFFFF;
+    font-weight: bold; 
 }
 .quadradoValido {
     background-color: #4CAF50;
     cursor: pointer;
 }
 
-
-
-/* Estilo para quando o quadrado pequeno é clicado */
 .quadradoPequeno:active {
-    background-color: #BBDEFB; /* Cor de fundo quando clicado (azul mais claro) */
+    background-color: #BBDEFB;
 }
 
 .quadradoPequeno1, .quadradoPequeno2, .quadradoPequeno3, .quadradoGrande10,.quadradoPequeno11, .quadradoPequeno12, .quadradoPequeno13, .quadradoGrande20,.quadradoPequeno21, .quadradoPequeno22, .quadradoPequeno23, .quadradoGrande30, .quadradoPequeno31, .quadradoPequeno32, .quadradoPequeno33, .quadradoPequeno41, .quadradoPequeno42, .quadradoPequeno43, .quadradoPequeno51, .quadradoPequeno52, .quadradoPequeno53, .quadradoPequeno61, .quadradoPequeno62, .quadradoPequeno63, .quadradoPequeno71, .quadradoPequeno72, .quadradoPequeno73, .quadradoPequeno81, .quadradoPequeno82, .quadradoPequeno83{

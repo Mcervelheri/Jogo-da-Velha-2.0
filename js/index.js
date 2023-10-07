@@ -130,7 +130,7 @@ function comecarJogo() {
         quadradoGrande.classList.remove('vencedorX');
         quadradoGrande.classList.remove('vencedorO');
     })
-    mostrarJogador = document.querySelector('.jogadorAtual');
+    mostrarJogador = document.querySelector('.jogador-atual');
     mostrarJogador.textContent = 'Jogador atual:' + jogadorAtual;
     mostrarPlacar = document.querySelector('.placar');
     mostrarPlacar.textContent = 'Placar\n'+'jogador X: '+contadorVitoriasX+'\nJogador O: '+contadorVitoriasO;
@@ -175,7 +175,7 @@ function escolherQuadrado(id) {
         if (vitoriaQuadradinhoX) {
             quadradosMarcados.push(quadradaoVencido);
             quadradoGrande.classList.add('vencedorX');
-            if (verificarSequenciaGrandeCompleta()) {
+            if (verificarSequenciaGrandeCompletaX()) {
                 abrirVencedor(jogadorAtual);
                 contadorVitoriasX += 1;
             }
@@ -183,7 +183,7 @@ function escolherQuadrado(id) {
         if (vitoriaQuadradinhoO) {
             quadradosMarcados.push(quadradaoVencido);
             quadradoGrande.classList.add('vencedorO');
-            if (verificarSequenciaGrandeCompleta()) {
+            if (verificarSequenciaGrandeCompletaO()) {
                 abrirVencedor(jogadorAtual);
                 contadorVitoriasO += 1;
             }
@@ -272,7 +272,7 @@ function verificarSequenciaPequeno(simbolo, idQuadradoGrande) {
     }
 }
 
-function verificarSequenciaGrandeCompleta() {
+function verificarSequenciaGrandeCompletaO() {
     // Percorre a matriz de sequência de quadrados grandes
     for (let i = 0; i < sequenciaQuadradoGrande.length; i++) {
         const sequencia = sequenciaQuadradoGrande[i];
@@ -280,7 +280,25 @@ function verificarSequenciaGrandeCompleta() {
         // Verifica se todos os quadrados na sequência têm a classe do símbolo do jogador
         const sequenciaCompleta = sequencia.every(quadradoId => {
             const quadrado = document.getElementById(quadradoId.toString());
-            return quadrado.classList.contains('vencedorX') || quadrado.classList.contains('vencedorO') 
+            return quadrado.classList.contains('vencedorO');
+        });
+
+        if (sequenciaCompleta) {
+            return true;
+        }
+    }
+
+    return false; // Nenhuma sequência completa encontrada
+}
+function verificarSequenciaGrandeCompletaX() {
+    // Percorre a matriz de sequência de quadrados grandes
+    for (let i = 0; i < sequenciaQuadradoGrande.length; i++) {
+        const sequencia = sequenciaQuadradoGrande[i];
+
+        // Verifica se todos os quadrados na sequência têm a classe do símbolo do jogador
+        const sequenciaCompleta = sequencia.every(quadradoId => {
+            const quadrado = document.getElementById(quadradoId.toString());
+            return quadrado.classList.contains('vencedorX');
         });
 
         if (sequenciaCompleta) {
