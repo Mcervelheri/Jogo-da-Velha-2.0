@@ -20,7 +20,6 @@ main {
     background-color: #3f51b5;
     border-radius: 10px; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    height: calc(100% - 5px);
 }
 
 @media only screen and (min-width: 917px) {
@@ -30,201 +29,6 @@ main {
         justify-content: center;
         width: 100%;
         height: calc(100vh - 62px);
-        border: 1px solid red;
-    }
-    
-    .quadro {
-        flex-direction: row;
-        width: calc(100% / 2);
-        flex-wrap: wrap;
-        min-width: 565px;
-        max-width: 584px;
-    }
-
-    .cabecalho {
-        width: 100%;
-        height: 60px;
-        display: flex;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #1976D2;
-        justify-content: space-evenly;
-        align-items: center;
-        margin: 0;
-    }
-    .container-lateral {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 200px;
-        background-color: #ffffffa5;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        text-align: center;
-        margin: 10px;
-    }
-
-    .jogador-atual {
-        font-size: 20px;
-        color: #1976D2;
-        font-weight: bold;
-        margin: 10px 0;
-    }
-    
-    .titulo {
-        color: white;
-        font-size: 28px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        position: relative;
-    }
-
-    .placar {
-        font-size: 18px;
-        color: #333;
-        margin: 10px 0;
-    }
-    
-    .botao-como-jogar {
-        background-color: #1976D2;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        margin-right: 20px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: background-color 0.3s ease; 
-    
-        position: absolute;
-        top: 0;
-        left: 183px;
-        margin: 10px;
-    }
-    
-    .botao-como-jogar:hover {
-        background-color: #1565C0;
-    }
-    
-    .jogar {
-        background-color: #1976D2;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        margin-right: 20px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: background-color 0.3s ease; 
-    
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 10px;
-    }
-    
-    .jogar:hover{
-        background-color: #1565C0;
-    }
-
-    .reiniciar {
-        background-color: #1976D2;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        margin-right: 20px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: background-color 0.3s ease; 
-    
-        position: absolute;
-        top: 0;
-        left: 80px;
-        margin: 10px;
-    }
-    
-    .reiniciar:hover{
-        background-color: #1565C0;
-    }
-    
-    .tela-regras, .tela-vencedor {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 999;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .conteudo-regras, .conteudo-vencedor {
-        background-color: #ffffffa5;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        text-align: center;
-    }
-    
-    /* Estilize o botão "Fechar" */
-    .conteudo-regras button, .conteudo-vencedor button {
-        background-color: #1976D2;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        margin-top: 10px;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-    
-    .quadradoGrande {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        align-items: center;
-        width: calc(100%/3 - 24px);
-        height: calc(100%/3 - 24px);
-        background-color: #2196F3;
-        border: 2px solid #1976D2;
-        border-radius: 5px;
-        margin: 10px; 
-
-        box-shadow: 0.2px 0.2px;
-
-    }
-    
-    .quadradoPequeno {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center; 
-        width: calc(100% / 3 - 6px); 
-        height: calc(100% / 3 - 6px); 
-        background-color: #64B5F6;
-        background-repeat: no-repeat;
-        background-position: center center;
-        border: 1px solid #1976D2; 
-        font-size: 0.8em; 
-        border-radius: 5px; 
-        margin-right: 2px;
-        margin-bottom: 2px;
-
-        box-shadow: 1px 1px 0 1px;
-       }
-}
-
-@media only screen and (min-width: 774px) {
-    main {
-        flex-direction: row;
-        margin-top: 60px;
-        justify-content: center;
-        width: 100%;
-        height: calc(100vh - 60px);
-        border: 1px solid red;
     }
 
     #menu__toggle {
@@ -233,10 +37,9 @@ main {
     
     .quadro {
         flex-direction: row;
-        width: calc(100%/2);
+        aspect-ratio: 1 / 1;
+        height: calc(100vh - 62px);
         flex-wrap: wrap;
-        min-width: 565px;
-        max-width: 584px;
     }
 
     .cabecalho {
@@ -400,8 +203,448 @@ main {
         flex-wrap: wrap;
         align-items: center;
         justify-content: center; 
-        width: calc(100% / 3 - 6px); 
         height: calc(100% / 3 - 6px); 
+        aspect-ratio: 1 / 1;
+        background-color: #64B5F6;
+        background-repeat: no-repeat;
+        background-position: center center;
+        border: 1px solid #1976D2; 
+        font-size: 0.8em; 
+        border-radius: 5px; 
+        margin-right: 2px;
+        margin-bottom: 2px;
+
+        box-shadow: 1px 1px 0 1px;
+       }
+
+       .vitoriaX {
+        color: #FF5733;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+    }
+    
+    .vitoriaO {
+        color: #33FF33;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+    }
+}
+
+@media only screen and (min-width: 774px) and (max-width: 916px){
+    main {
+        flex-direction: row;
+        margin-top: 60px;
+        justify-content: center;
+        width: 100%;
+        height: calc(100vh - 60px);
+    }
+
+    #menu__toggle {
+        display: none;
+    }
+    
+    .quadro {
+        flex-direction: row;
+        aspect-ratio: 1 / 1;
+        height: calc(100vh - 62px);
+        flex-wrap: wrap;
+    }
+
+    .cabecalho {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #1976D2;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 0;
+    }
+    .container-lateral {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 200px;
+        background-color: #ffffffa5;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        margin: 10px;
+    }
+
+    .jogador-atual {
+        font-size: 20px;
+        color: #1976D2;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    
+    .titulo {
+        color: white;
+        font-size: 28px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        position: relative;
+    }
+
+    .placar {
+        font-size: 18px;
+        color: #333;
+        margin: 10px 0;
+    }
+    
+    .botao-como-jogar {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-right: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease; 
+    
+        position: absolute;
+        top: 0;
+        left: 183px;
+        margin: 10px;
+    }
+    
+    .botao-como-jogar:hover {
+        background-color: #1565C0;
+    }
+    
+    .jogar {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-right: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease; 
+    
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 10px;
+    }
+    
+    .jogar:hover{
+        background-color: #1565C0;
+    }
+
+    .reiniciar {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-right: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease; 
+    
+        position: absolute;
+        top: 0;
+        left: 80px;
+        margin: 10px;
+    }
+    
+    .reiniciar:hover{
+        background-color: #1565C0;
+    }
+    
+    .tela-regras, .tela-vencedor {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .conteudo-regras, .conteudo-vencedor {
+        background-color: #ffffffa5;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+    
+    /* Estilize o botão "Fechar" */
+    .conteudo-regras button, .conteudo-vencedor button {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    .quadradoGrande {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        width: calc(100%/3 - 24px);
+        height: calc(100%/3 - 24px);
+        background-color: #2196F3;
+        border: 2px solid #1976D2;
+        border-radius: 5px;
+        margin: 10px; 
+
+        box-shadow: 0.2px 0.2px;
+
+    }
+    
+    .quadradoPequeno {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center; 
+        height: calc(100% / 3 - 6px); 
+        aspect-ratio: 1 / 1;
+        background-color: #64B5F6;
+        background-repeat: no-repeat;
+        background-position: center center;
+        border: 1px solid #1976D2; 
+        font-size: 0.8em; 
+        border-radius: 5px; 
+        margin-right: 2px;
+        margin-bottom: 2px;
+
+        box-shadow: 1px 1px 0 1px;
+       }
+       .vitoriaX {
+        color: #FF5733;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+    }
+    
+    .vitoriaO {
+        color: #33FF33;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+    }
+}
+
+@media only screen and (min-width: 447px) and (max-width: 773px) {
+    main {
+        flex-direction: column;
+        width: 100vw;
+        margin-top: 30px;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 30px);
+    }
+    
+    .quadro {
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: calc(100vh - 120px);
+        aspect-ratio: 1 / 1;
+    }
+    
+    #menu__toggle {
+        display: none;
+    }
+    .cabecalho {
+        width: 100%;
+        height: 30px;
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #1976D2;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 0;
+    }
+    .container-lateral {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 90vw;
+        height: 40px;
+        background-color: #ffffffa5;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        margin: 10px;
+    }
+
+    .jogador-atual {
+        font-size: 12px;
+        color: #1976D2;
+        font-weight: bold;
+    }
+    
+    .titulo {
+        color: white;
+        font-size: 18px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        position: absolute;
+        right: 60px;
+    }
+
+    .placar {
+        font-size: 12px;
+        color: #333;
+        margin: 0;
+    }
+
+    .container-placar {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .vitoriaX {
+        color: #FF5733;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0;
+    }
+    
+    .vitoriaO {
+        color: #33FF33;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0;
+    }
+    
+    .botao-como-jogar {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        margin-right: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 12px;
+        transition: background-color 0.3s ease; 
+    
+        position: absolute;
+        top: 0;
+        left: 150px;
+        margin: 8px 0;
+    }
+    
+    .botao-como-jogar:hover {
+        background-color: #1565C0;
+    }
+    
+    .jogar {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        margin-right: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 12px;
+        transition: background-color 0.3s ease; 
+    
+        position: absolute;
+        top: 0;
+        left: 20px;
+        margin: 8px 0;
+    }
+    
+    .jogar:hover{
+        background-color: #1565C0;
+    }
+
+    .reiniciar {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        margin-right: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 12px;
+        transition: background-color 0.3s ease; 
+    
+        position: absolute;
+        top: 0;
+        left: 80px;
+        margin: 8px 0;
+    }
+    
+    .reiniciar:hover{
+        background-color: #1565C0;
+    }
+    
+    .tela-regras, .tela-vencedor {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .conteudo-regras, .conteudo-vencedor {
+        background-color: #ffffffa5;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+    
+    /* Estilize o botão "Fechar" */
+    .conteudo-regras button, .conteudo-vencedor button {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    .quadradoGrande {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        width: calc(100%/3 - 24px);
+        aspect-ratio: 1 / 1;
+        background-color: #2196F3;
+        border: 2px solid #1976D2;
+        border-radius: 5px;
+        margin: 10px; 
+
+        box-shadow: 0.2px 0.2px;
+
+    }
+    
+    .quadradoPequeno {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center; 
+        width: calc(100% / 3 - 6px); 
+        aspect-ratio: 1 / 1;
         background-color: #64B5F6;
         background-repeat: no-repeat;
         background-position: center center;
@@ -415,7 +658,7 @@ main {
        }
 }
 
-@media only screen and (max-width: 774px) {
+@media only screen and (max-width: 447px) {
     main {
         flex-direction: column;
         width: 100vw;
@@ -424,14 +667,14 @@ main {
         align-items: center;
         width: 100%;
         height: calc(100vh - 30px);
-        border: 1px solid red;
     }
     
     .quadro {
         flex-direction: row;
+        aspect-ratio: 1 / 1;
         width: calc(100%/2);
         flex-wrap: wrap;
-        width: 95vw;
+        width: 100vw;
     }
 
     .cabecalho {
@@ -540,7 +783,7 @@ main {
         justify-content: space-around;
         align-items: center;
         width: calc(100%/3 - 24px);
-        height: calc(100%/3 - 24px);
+        aspect-ratio: 1 / 1;
         background-color: #2196F3;
         border: 2px solid #1976D2;
         border-radius: 5px;
@@ -556,7 +799,7 @@ main {
         align-items: center;
         justify-content: center; 
         width: calc(100% / 3 - 6px); 
-        height: calc(100% / 3 - 6px); 
+        aspect-ratio: 1 / 1;
         background-color: #64B5F6;
         background-repeat: no-repeat;
         background-position: center center;
