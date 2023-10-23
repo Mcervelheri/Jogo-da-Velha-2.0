@@ -174,6 +174,7 @@ function escolherQuadrado(id) {
     const quadradoGrande = document.getElementById(id).parentNode;
     quadradoJogado = document.getElementById(id);
     quadradoJogado.style.backgroundImage = jogadorAtual.imagem;
+    quadradoJogado.style.backgroundSize = "cover";
 
     // Adiciona o quadrado atual à lista de quadrados marcados
     quadradosMarcados.push(id);
@@ -266,7 +267,6 @@ function verificarSequenciaPequeno(simbolo, idQuadradoGrande) {
     const sequenciasVitoria = sequenciaQuadradoPequeno.filter(seq => seq.every(posicao => {
         const idDiv = posicao.toString();
         let conteudoDiv;
-        console.log(document.getElementById(idDiv).style.backgroundImage);
 
         if (document.getElementById(idDiv).style.backgroundImage === 'url("img/X.png")') {
             conteudoDiv = "X";

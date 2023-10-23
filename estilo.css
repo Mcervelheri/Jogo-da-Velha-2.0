@@ -418,6 +418,7 @@ main {
         background-color: #64B5F6;
         background-repeat: no-repeat;
         background-position: center center;
+        object-fit: contain;
         border: 1px solid #1976D2; 
         font-size: 0.8em; 
         border-radius: 5px; 
