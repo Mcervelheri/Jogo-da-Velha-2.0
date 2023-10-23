@@ -2,7 +2,15 @@ const quadradosPequenos = document.querySelectorAll(".quadradoPequeno");
 let contadorVitoriasX = 0;
 let contadorVitoriasO = 0;
 let quadradosMarcados = [];
-let jogadorAtual = "X";
+let X = {
+    imagem: "url(img/X.png)",
+    texto: "X"
+}
+let O = {
+    imagem: "url(img/O.png)",
+    texto: "O"
+}
+let jogadorAtual = X;
 let mostrarJogador = '';
 let mostrarPlacar = '';
 let quadradosValidos = [];
@@ -114,15 +122,18 @@ let listaQuadradosGrandeInalterada = [
 let listaQuadradosGrande = deepCopy(listaQuadradosGrandeInalterada);
 
 function comecarJogo() {
+    let checkbox = document.getElementById("menu__toggle");
+    checkbox.checked = false;
+
     quadradosMarcados = [];
     quadradosValidos = [];
     listaQuadradosGrande = deepCopy(listaQuadradosGrandeInalterada);
     todosQuadrados = document.querySelectorAll('.quadradoPequeno');
     todosQuadrados.forEach(quadrado => {
         quadrado.classList.add('quadradoValido');
-        quadrado.textContent = null;
+        quadrado.style.backgroundImage = '';
         quadrado.onclick = () => escolherQuadrado(quadrado.id);
-        quadradosValidos.push(parseInt(quadrado.id)); 
+        quadradosValidos.push(parseInt(quadrado.id));
     });
 
     todosQuadradosGrandes = document.querySelectorAll('.quadradoGrande');
@@ -131,9 +142,13 @@ function comecarJogo() {
         quadradoGrande.classList.remove('vencedorO');
     })
     mostrarJogador = document.querySelector('.jogador-atual');
-    mostrarJogador.textContent = 'Jogador atual:' + jogadorAtual;
+    mostrarJogador.textContent = 'Jogador atual:' + jogadorAtual.texto;
     mostrarPlacar = document.querySelector('.placar');
-    mostrarPlacar.textContent = 'Placar\n'+'jogador X: '+contadorVitoriasX+'\nJogador O: '+contadorVitoriasO;
+    mostrarPlacar.innerHTML = 'Placar';
+    const vitoriasX = document.querySelector('.vitoriaX');
+    vitoriasX.innerHTML = "Jogador X: " + contadorVitoriasX;
+    const vitoriasO = document.querySelector('.vitoriaO');
+    vitoriasO.innerHTML = "Jogador O: " + contadorVitoriasO;
 }
 
 function abrirRegras() {
@@ -146,7 +161,7 @@ function fecharRegras() {
 
 function abrirVencedor(jogadorAtual) {
     document.getElementById("tela-vencedor").style.display = "flex";
-    document.querySelector('.tela-vencedor').querySelector('h2').textContent = 'Vitoria do jogador '+jogadorAtual;
+    document.querySelector('.tela-vencedor').querySelector('h2').textContent = 'Vitoria do jogador ' + jogadorAtual.texto;
 }
 
 function fecharVencedor() {
@@ -158,12 +173,12 @@ function escolherQuadrado(id) {
 
     const quadradoGrande = document.getElementById(id).parentNode;
     quadradoJogado = document.getElementById(id);
-    quadradoJogado.innerHTML = jogadorAtual;
+    quadradoJogado.style.backgroundImage = jogadorAtual.imagem;
 
     // Adiciona o quadrado atual à lista de quadrados marcados
     quadradosMarcados.push(id);
-    let vitoriaQuadradinhoX = verificarSequenciaPequeno('X', quadradoGrande);
-    let vitoriaQuadradinhoO = verificarSequenciaPequeno('O', quadradoGrande);
+    let vitoriaQuadradinhoX = verificarSequenciaPequeno(X.texto, quadradoGrande);
+    let vitoriaQuadradinhoO = verificarSequenciaPequeno(O.texto, quadradoGrande);
     let quadradaoVencido = 0
     // Se houver uma vitória, adiciona todos os quadrados da sequência à lista de quadrados marcados
     if (vitoriaQuadradinhoX || vitoriaQuadradinhoO) {
@@ -250,7 +265,14 @@ function removerQuadradosDoQuadradao(quadradaoId) {
 function verificarSequenciaPequeno(simbolo, idQuadradoGrande) {
     const sequenciasVitoria = sequenciaQuadradoPequeno.filter(seq => seq.every(posicao => {
         const idDiv = posicao.toString();
-        const conteudoDiv = document.getElementById(idDiv).textContent;
+        let conteudoDiv;
+        console.log(document.getElementById(idDiv).style.backgroundImage);
+
+        if (document.getElementById(idDiv).style.backgroundImage === 'url("img/X.png")') {
+            conteudoDiv = "X";
+        } else if(document.getElementById(idDiv).style.backgroundImage === 'url("img/O.png")') {
+            conteudoDiv = "O";
+        }
         return conteudoDiv === simbolo;
     }));
     const idsElementosFilhos = [];
@@ -290,6 +312,7 @@ function verificarSequenciaGrandeCompletaO() {
 
     return false; // Nenhuma sequência completa encontrada
 }
+
 function verificarSequenciaGrandeCompletaX() {
     // Percorre a matriz de sequência de quadrados grandes
     for (let i = 0; i < sequenciaQuadradoGrande.length; i++) {
@@ -323,12 +346,12 @@ function desabilitarQuadrados(quadradosValidos) {
 }
 
 function trocarJogador(ultimoAJogar) {
-    if (ultimoAJogar === "X") {
-        jogadorAtual = "O";
+    if (ultimoAJogar === X) {
+        jogadorAtual = O;
 
-        mostrarJogador.textContent = 'Jogador atual:' + jogadorAtual;
-    } else if (ultimoAJogar === "O") {
-        jogadorAtual = "X";
-        mostrarJogador.textContent = 'Jogador atual:' + jogadorAtual;
+        mostrarJogador.textContent = 'Jogador atual:' + jogadorAtual.texto;
+    } else if (ultimoAJogar === O) {
+        jogadorAtual = X;
+        mostrarJogador.textContent = 'Jogador atual:' + jogadorAtual.texto;
     }
 }

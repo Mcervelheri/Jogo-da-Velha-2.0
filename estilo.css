@@ -12,8 +12,7 @@ body {
 
 main {
     display: flex;
-    height: 100vh;
-    width: 100vw;
+
 }
 
 .quadro {
@@ -21,22 +20,25 @@ main {
     background-color: #3f51b5;
     border-radius: 10px; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    height: calc(100% - 5px);
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 917px) {
     main {
         flex-direction: row;
         margin-top: 60px;
         justify-content: center;
-        height: calc(100vh - 60px);
+        width: 100%;
+        height: calc(100vh - 62px);
         border: 1px solid red;
     }
     
     .quadro {
         flex-direction: row;
+        width: calc(100% / 2);
         flex-wrap: wrap;
-        min-width: 586px;
-        min-height: 586px;
+        min-width: 565px;
+        max-width: 584px;
     }
 
     .cabecalho {
@@ -182,7 +184,7 @@ main {
     .quadradoGrande {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         width: calc(100%/3 - 24px);
         height: calc(100%/3 - 24px);
@@ -190,6 +192,9 @@ main {
         border: 2px solid #1976D2;
         border-radius: 5px;
         margin: 10px; 
+
+        box-shadow: 0.2px 0.2px;
+
     }
     
     .quadradoPequeno {
@@ -197,39 +202,465 @@ main {
         flex-wrap: wrap;
         align-items: center;
         justify-content: center; 
-        width: calc(100% / 3 - 4px); 
-        height: calc(100% / 3 - 4px); 
+        width: calc(100% / 3 - 6px); 
+        height: calc(100% / 3 - 6px); 
         background-color: #64B5F6;
+        background-repeat: no-repeat;
+        background-position: center center;
         border: 1px solid #1976D2; 
-        font-size: 24px; 
+        font-size: 0.8em; 
         border-radius: 5px; 
+        margin-right: 2px;
+        margin-bottom: 2px;
+
+        box-shadow: 1px 1px 0 1px;
+       }
+}
+
+@media only screen and (min-width: 716px) {
+    main {
+        flex-direction: row;
+        margin-top: 60px;
+        justify-content: center;
+        width: 100%;
+        height: calc(100vh - 60px);
+        border: 1px solid red;
     }
+    
+    .quadro {
+        flex-direction: row;
+        width: calc(100%/2);
+        flex-wrap: wrap;
+        min-width: 565px;
+        max-width: 584px;
+    }
+
+    .cabecalho {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #1976D2;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 0;
+    }
+    .container-lateral {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 200px;
+        background-color: #ffffffa5;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        margin: 10px;
+    }
+
+    .jogador-atual {
+        font-size: 20px;
+        color: #1976D2;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    
+    .titulo {
+        color: white;
+        font-size: 28px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        position: relative;
+    }
+
+    .placar {
+        font-size: 18px;
+        color: #333;
+        margin: 10px 0;
+    }
+    
+    .botao-como-jogar {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-right: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease; 
+    
+        position: absolute;
+        top: 0;
+        left: 183px;
+        margin: 10px;
+    }
+    
+    .botao-como-jogar:hover {
+        background-color: #1565C0;
+    }
+    
+    .jogar {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-right: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease; 
+    
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 10px;
+    }
+    
+    .jogar:hover{
+        background-color: #1565C0;
+    }
+
+    .reiniciar {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-right: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease; 
+    
+        position: absolute;
+        top: 0;
+        left: 80px;
+        margin: 10px;
+    }
+    
+    .reiniciar:hover{
+        background-color: #1565C0;
+    }
+    
+    .tela-regras, .tela-vencedor {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .conteudo-regras, .conteudo-vencedor {
+        background-color: #ffffffa5;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+    
+    /* Estilize o botão "Fechar" */
+    .conteudo-regras button, .conteudo-vencedor button {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    .quadradoGrande {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        width: calc(100%/3 - 24px);
+        height: calc(100%/3 - 24px);
+        background-color: #2196F3;
+        border: 2px solid #1976D2;
+        border-radius: 5px;
+        margin: 10px; 
+
+        box-shadow: 0.2px 0.2px;
+
+    }
+    
+    .quadradoPequeno {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center; 
+        width: calc(100% / 3 - 6px); 
+        height: calc(100% / 3 - 6px); 
+        background-color: #64B5F6;
+        background-repeat: no-repeat;
+        background-position: center center;
+        border: 1px solid #1976D2; 
+        font-size: 0.8em; 
+        border-radius: 5px; 
+        margin-right: 2px;
+        margin-bottom: 2px;
+
+        box-shadow: 1px 1px 0 1px;
+       }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 716px) {
+    main {
+        flex-direction: column;
+        width: 100vw;
+        margin-top: 30px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: calc(100vh - 30px);
+        border: 1px solid red;
+    }
+    
+    .quadro {
+        flex-direction: row;
+        width: calc(100%/2);
+        flex-wrap: wrap;
+        width: 95vw;
+    }
 
+    .cabecalho {
+        width: 100%;
+        height: 30px;
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #1976D2;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 0;
+    }
+
+    .container-lateral {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 90vw;
+        height: 40px;
+        background-color: #ffffffa5;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        margin: 10px;
+    }
+
+    .jogador-atual {
+        font-size: 12px;
+        color: #1976D2;
+        font-weight: bold;
+    }
+    
+    .titulo {
+        color: white;
+        font-size: 15px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .placar {
+        font-size: 12px;
+        color: #333;
+        margin: 0;
+    }
+
+    .container-placar {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .vitoriaX {
+        color: #FF5733;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0;
+    }
+    
+    .vitoriaO {
+        color: #33FF33;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0;
+    }
+    
+    .tela-regras, .tela-vencedor {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .conteudo-regras, .conteudo-vencedor {
+        background-color: #ffffffa5;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+    
+    /* Estilize o botão "Fechar" */
+    .conteudo-regras button, .conteudo-vencedor button {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    .quadradoGrande {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        width: calc(100%/3 - 24px);
+        height: calc(100%/3 - 24px);
+        background-color: #2196F3;
+        border: 2px solid #1976D2;
+        border-radius: 5px;
+        margin: 10px; 
+
+        box-shadow: 0.2px 0.2px;
+
+    }
+    
+    .quadradoPequeno {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center; 
+        width: calc(100% / 3 - 6px); 
+        height: calc(100% / 3 - 6px); 
+        background-color: #64B5F6;
+        background-repeat: no-repeat;
+        background-position: center center;
+        border: 1px solid #1976D2; 
+        font-size: 0.8em; 
+        border-radius: 5px; 
+        margin-right: 2px;
+        margin-bottom: 2px;
+
+        box-shadow: 1px 1px 0 1px;
+       }
+
+       /* ------------------------------------------ */
+       #menu__toggle {
+        opacity: 0;
+      }
+      #menu__toggle:checked + .menu__btn > span {
+        transform: rotate(45deg);
+      }
+      #menu__toggle:checked + .menu__btn > span::before {
+        top: 0;
+        transform: rotate(0deg);
+      }
+      #menu__toggle:checked + .menu__btn > span::after {
+        top: 0;
+        transform: rotate(90deg);
+      }
+      #menu__toggle:checked ~ .menu__box {
+        left: 5px !important;
+      }
+      .menu__btn {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        width: 26px;
+        height: 26px;
+        cursor: pointer;
+        z-index: 1;
+      }
+      .menu__btn > span,
+      .menu__btn > span::before,
+      .menu__btn > span::after {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        transition-duration: .25s;
+      }
+      .menu__btn > span::before {
+        content: '';
+        top: -8px;
+      }
+      .menu__btn > span::after {
+        content: '';
+        top: 8px;
+      }
+      .menu__box {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 200px;
+        margin: 0;
+        border-radius: 10px;
+        padding: 20px 0;
+        background-color: #1976D2;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+        transition-duration: .25s;
+      }
+      
+      .menu__item {
+        background-color: #1976D2;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        font-size: 20px;
+        transition-duration: .25s;
+      }
+      .menu__item:hover {
+        background-color: #1565C0;
+      }
+     
 }
 
-@media only screen and (min-width: 600px) {
-
+.vitoriaX {
+    color: #FF5733;
+    font-weight: bold;
 }
 
-@media only screen and (max-width: 600px) {
-
+.vitoriaO {
+    color: #33FF33;
+    font-weight: bold;
 }
 
-
+.placar {
+    color: #1565C0;
+    font-weight: bold;
+}
 
 .vencedorX {
     background-color: #FF5733;
-    color: #FFFFFF;
-    font-weight: bold;
 }
 
 .vencedorO {
     background-color: #33FF33;
-    color: #FFFFFF;
-    font-weight: bold; 
+        
 }
 .quadradoValido {
     background-color: #4CAF50;
@@ -238,20 +669,4 @@ main {
 
 .quadradoPequeno:active {
     background-color: #BBDEFB;
-}
-
-.quadradoPequeno1, .quadradoPequeno2, .quadradoPequeno3, .quadradoGrande10,.quadradoPequeno11, .quadradoPequeno12, .quadradoPequeno13, .quadradoGrande20,.quadradoPequeno21, .quadradoPequeno22, .quadradoPequeno23, .quadradoGrande30, .quadradoPequeno31, .quadradoPequeno32, .quadradoPequeno33, .quadradoPequeno41, .quadradoPequeno42, .quadradoPequeno43, .quadradoPequeno51, .quadradoPequeno52, .quadradoPequeno53, .quadradoPequeno61, .quadradoPequeno62, .quadradoPequeno63, .quadradoPequeno71, .quadradoPequeno72, .quadradoPequeno73, .quadradoPequeno81, .quadradoPequeno82, .quadradoPequeno83{
-    border-top: none;
-}
-
-.quadradoGrande10, .quadradoGrande40, .quadradoGrande70, .quadradoPequeno1, .quadradoPequeno4, .quadradoPequeno7, .quadradoPequeno11, .quadradoPequeno14, .quadradoPequeno17, .quadradoPequeno21, .quadradoPequeno24, .quadradoPequeno27, .quadradoPequeno31, .quadradoPequeno34, .quadradoPequeno37, .quadradoPequeno41, .quadradoPequeno44, .quadradoPequeno47, .quadradoPequeno51, .quadradoPequeno54, .quadradoPequeno57, .quadradoPequeno61, .quadradoPequeno64, .quadradoPequeno67, .quadradoPequeno71, .quadradoPequeno74, .quadradoPequeno77, .quadradoPequeno81, .quadradoPequeno84, .quadradoPequeno87{
-    border-left: none;
-}
-
-.quadradoGrande30, .quadradoGrande60, .quadradoGrande90, .quadradoPequeno3, .quadradoPequeno6, .quadradoPequeno9, .quadradoPequeno13, .quadradoPequeno16, .quadradoPequeno19, .quadradoPequeno23, .quadradoPequeno26, .quadradoPequeno29, .quadradoPequeno33, .quadradoPequeno36, .quadradoPequeno39, .quadradoPequeno43, .quadradoPequeno46, .quadradoPequeno49, .quadradoPequeno53, .quadradoPequeno56, .quadradoPequeno59, .quadradoPequeno63, .quadradoPequeno66, .quadradoPequeno69, .quadradoPequeno73, .quadradoPequeno76, .quadradoPequeno79, .quadradoPequeno83, .quadradoPequeno86, .quadradoPequeno89{
-    border-right: none;
-}
-
-.quadradoGrande70, .quadradoGrande80, .quadradoGrande90, .quadradoPequeno7, .quadradoPequeno8, .quadradoPequeno9, .quadradoPequeno17, .quadradoPequeno18, .quadradoPequeno19, .quadradoPequeno27, .quadradoPequeno28, .quadradoPequeno29, .quadradoPequeno37, .quadradoPequeno38, .quadradoPequeno39, .quadradoPequeno47, .quadradoPequeno48, .quadradoPequeno49, .quadradoPequeno57, .quadradoPequeno58, .quadradoPequeno59, .quadradoPequeno67, .quadradoPequeno68, .quadradoPequeno69, .quadradoPequeno77, .quadradoPequeno78, .quadradoPequeno79, .quadradoPequeno87, .quadradoPequeno88, .quadradoPequeno89{
-    border-bottom: none;
 }

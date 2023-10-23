@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1997806678669385"
-        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="estilo.css">
     <title>Jogo da velha 2</title>
 </head>
@@ -14,10 +12,22 @@
 
     <header>
         <div class="cabecalho">
-            <button class="jogar" onclick="comecarJogo()">Jogar</button>
-            <button class="reiniciar" onclick="comecarJogo()">Reiniciar</button>
+
+            <div class="hamburger-menu">
+                <input id="menu__toggle" type="checkbox" />
+                <label class="menu__btn" for="menu__toggle">
+                    <span></span>
+                </label>
+
+                <div class="menu__box">
+                    <button class="menu__item jogar" onclick="comecarJogo()">Jogar</button>
+                    <button class="menu__item reiniciar" onclick="comecarJogo()">Reiniciar</button>
+                    <button class="menu__item botao-como-jogar" onclick="abrirRegras()">Como Jogar</button>
+                </div>
+
+            </div>
             <h1 class="titulo">JOGO DA VELHA 2.0</h1>
-            <button class="botao-como-jogar" onclick="abrirRegras()">Como Jogar</button>
+
         </div>
     </header>
 
@@ -199,19 +209,29 @@
             </div>
         </div>
         <div class="container-lateral">
-            <p class="jogador-atual"></p>
-            <p class="placar"></p>
+            <div>
+                <p class="jogador-atual"></p>
+            </div>
+            <div container-placar>
+                <p class="placar"></p>
+                <p class="vitoriaX"></p>
+                <p class="vitoriaO"></p>
+            </div>
         </div>
         <div id="tela-regras" class="tela-regras">
             <div class="conteudo-regras">
                 <h2>Regras do Jogo</h2>
                 <p>1. Objetivo: Complete uma sequência de 3 em linha para vencer.</p>
                 <p>2. Tabuleiro Especial: O jogo possui 9 quadrados menores agrupados em um grande tabuleiro.</p>
-                <p>3. Restrição de Movimento: Você só pode jogar no quadrado menor relativo à última jogada do seu adversário.</p>
-                <p>4. Desafio Adicional: Complete o jogo da velha em cada quadrado menor e tente conquistar o tabuleiro maior.</p>
-                <p>5. Vitória: Vença ao completar uma linha de três quadrados menores ou conquistar o tabuleiro maior com uma linha de três quadrados menores.</p>
-                <p>6. Divirta-se: Desfrute deste jogo estratégico e desafiador contra amigos ou adversários controlados pelo computador.</p>
-                
+                <p>3. Restrição de Movimento: Você só pode jogar no quadrado menor relativo à última jogada do seu
+                    adversário.</p>
+                <p>4. Desafio Adicional: Complete o jogo da velha em cada quadrado menor e tente conquistar o tabuleiro
+                    maior.</p>
+                <p>5. Vitória: Vença ao completar uma linha de três quadrados menores ou conquistar o tabuleiro maior
+                    com uma linha de três quadrados menores.</p>
+                <p>6. Divirta-se: Desfrute deste jogo estratégico e desafiador contra amigos ou adversários controlados
+                    pelo computador.</p>
+
                 <button onclick="fecharRegras()">Fechar</button>
             </div>
         </div>
