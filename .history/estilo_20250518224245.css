@@ -95,11 +95,11 @@ main {
 }
 
 .botao-reiniciar {
-  left: 130px;
+  left: 100px;
 }
 
 .botao-regras {
-  left: 230px;
+  left: 200px;
 }
 
 .botao-jogar:hover,
@@ -399,7 +399,7 @@ main {
     width: 250px;
     height: 100%;
     margin: 0;
-    padding: 80px 10px;
+    padding: 80px 0;
     list-style: none;
     background-color: #333;
     box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
